@@ -543,8 +543,8 @@ def home():
       <div class="rule"></div>
       <h2>Let's talk</h2>
       <p class="sub">The next step is a working session on your most pressing priority, with a founding partner.</p>
-      <div class="cperson"><img src="img/pritpal.jpg" alt=""><div><b>Pritpal Aujla</b><span>PE Fund and Firm &middot; <span class="tbd">[email]</span></span></div></div>
-      <div class="cperson"><img src="img/bart.jpg" alt=""><div><b>Bart Bruckert</b><span>Portfolio Company &middot; <span class="tbd">[email]</span></span></div></div>
+      <div class="cperson"><img src="img/pritpal.jpg" alt=""><div><b>Pritpal Aujla</b><span>Leads PE Fund and Firm</span></div></div>
+      <div class="cperson"><img src="img/bart.jpg" alt=""><div><b>Bart Bruckert</b><span>Leads Portfolio Company</span></div></div>
       <div class="qs"><h4>Questions we'll ask you</h4><ul>
         <li>Which of these problems feels most urgent?</li>
         <li>What's working today, and where would you like more support?</li>
