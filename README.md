@@ -1,6 +1,6 @@
-# XYZ Partners – staging website
+# Three Strand Partners – draft website
 
-Served by GitHub Pages at https://xyz.harperavenue.com (see `CNAME`).
+Served by GitHub Pages at https://threestrandpartners.com (see `CNAME`).
 
 - `build.py` – **edit content here**, then run `python3 build.py` to regenerate the pages
 - `index.html` – home page (generated)

@@ -6,7 +6,7 @@ Edit the content dictionaries below, then rebuild. All pages share css/site.css.
 import html, pathlib
 
 ROOT = pathlib.Path(__file__).parent
-BRAND = "XYZ Partners"
+BRAND = "Three Strand Partners"
 TAGLINE = "Finance Expertise From Both Sides of the Deal"
 CTA = "Let's have a discussion"
 
@@ -185,7 +185,8 @@ def head(title, desc, base):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<link rel="icon" type="image/png" href="{base}img/favicon.png">
+<link rel="icon" type="image/svg+xml" href="{base}img/logo.svg">
+<link rel="alternate icon" type="image/png" href="{base}img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
@@ -205,7 +206,7 @@ def nav(base, current=None):
     home_links = "" if current else ""
     return f"""<header class="nav">
   <div class="wrap">
-    <a class="brand" href="{base or './'}"><img src="{base}img/xyz-logo.png" alt="">{BRAND}</a>
+    <a class="brand" href="{base or './'}"><img src="{base}img/logo.svg" alt="">{BRAND}</a>
     <nav><ul>
       {''.join(items)}
       <li><a href="{base}#record">Track record</a></li>
@@ -300,7 +301,7 @@ def offer(base):
         <button class="btn primary" type="submit">Send me the checklist</button>
       </form>
       <p class="fine">Four pages, PDF. We'll send it to your inbox and the occasional note on PE finance. Unsubscribe anytime.</p>
-      <div class="gate-ok" id="gate-ok">Thanks! <a href="{base}downloads/XYZ-100-Day-Finance-Checklist.pdf" target="_blank" rel="noopener">Download the checklist (PDF)</a><br><span style="font-size:13px;color:#C9D0DB">Draft site: the email isn't captured yet. This step needs the same form service as the contact form.</span></div>
+      <div class="gate-ok" id="gate-ok">Thanks! <a href="{base}downloads/Three-Strand-100-Day-Finance-Checklist.pdf" target="_blank" rel="noopener">Download the checklist (PDF)</a><br><span style="font-size:13px;color:#C9D0DB">Draft site: the email isn't captured yet. This step needs the same form service as the contact form.</span></div>
     </div>
   </div>
 </section>
@@ -377,7 +378,7 @@ def home():
 <section class="alt" id="why">
   <div class="wrap">
     <div class="head">
-      <div class="eyebrow">Why {BRAND.split()[0]}</div>
+      <div class="eyebrow">Why Three Strand</div>
       <h2>Most outside support covers one side of PE. We were built to cover both.</h2>
     </div>
     <div class="vs">
