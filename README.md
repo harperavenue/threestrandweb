@@ -1,10 +1,9 @@
-# Three Strand Partners – draft website
+# Three Strand Partners – website
 
 Served by GitHub Pages at https://threestrandpartners.com (see `CNAME`).
 
-- `build.py` – **edit content here**, then run `python3 build.py` to regenerate the pages
-- `index.html` – home page (generated)
-- `pe-fund/`, `pe-firm/`, `portfolio-company/` – one page per level (generated)
-- `css/site.css` – shared styles
-- `downloads/` – 100-day checklist PDF and its HTML source
-- Yellow highlighted text marks content still to be written; `noindex` keeps the draft out of search engines.
+- `/` – public landing page (`index.html`, generated)
+- `/stage/` – full draft site for internal review: home plus `pe-fund/`, `pe-firm/`, `portfolio-company/` (generated, `noindex`)
+- `build.py` – **edit content here**, then run `python3 build.py` to regenerate all pages
+- `css/site.css` – shared styles · `img/` – logo, photos · `downloads/` – 100-day checklist PDF and its HTML source
+- Note: `/stage/` is unlisted, not private. Anyone with the link can open it, and the repo is public.

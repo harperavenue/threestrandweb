@@ -1,4 +1,4 @@
-"""Builds the staging site: index.html plus one page per level.
+"""Builds the site: a public landing page at the root, and the full draft site under /stage/.
 
 Run:  python3 build.py
 Edit the content dictionaries below, then rebuild. All pages share css/site.css.
@@ -9,6 +9,7 @@ ROOT = pathlib.Path(__file__).parent
 BRAND = "Three Strand Partners"
 TAGLINE = "Finance Expertise From Both Sides of the Deal"
 CTA = "Let's have a discussion"
+STAGE = "/stage/"   # full draft site lives here; the root is a public landing page
 
 THEMES = ["Numbers you can trust", "One version of the truth", "Plans that hold",
           "Cash and capital, covered", "Ready for scrutiny", "Ready for the deal"]
@@ -185,12 +186,12 @@ def head(title, desc, base):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<link rel="icon" type="image/svg+xml" href="{base}img/logo.svg">
-<link rel="alternate icon" type="image/png" href="{base}img/favicon.png">
+<link rel="icon" type="image/svg+xml" href="/img/logo.svg">
+<link rel="alternate icon" type="image/png" href="/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{base}css/site.css">
+<link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
 <div class="draft">Staging draft for internal review. Not for distribution. Highlighted text needs input.</div>
@@ -202,11 +203,11 @@ def nav(base, current=None):
     for k in ORDER:
         L = LEVELS[k]
         cls = ' class="on"' if current == k else ""
-        items.append(f'<li><a{cls} href="{base}{L["slug"]}/">{L["name"]}</a></li>')
+        items.append(f'<li><a{cls} href="{STAGE}{L["slug"]}/">{L["name"]}</a></li>')
     home_links = "" if current else ""
     return f"""<header class="nav">
   <div class="wrap">
-    <a class="brand" href="{base or './'}"><img src="{base}img/logo.svg" alt="">{BRAND}</a>
+    <a class="brand" href="{STAGE}"><img src="/img/logo.svg" alt="">{BRAND}</a>
     <nav><ul>
       {''.join(items)}
       <li><a href="{base}#record">Track record</a></li>
@@ -219,7 +220,7 @@ def nav(base, current=None):
 
 
 def footer(base):
-    links = "".join(f'<a href="{base}{LEVELS[k]["slug"]}/">{LEVELS[k]["name"]}</a>' for k in ORDER)
+    links = "".join(f'<a href="{STAGE}{LEVELS[k]["slug"]}/">{LEVELS[k]["name"]}</a>' for k in ORDER)
     return f"""<footer>
   <div class="wrap">
     <span>&copy; 2026 {BRAND} &middot; {TAGLINE}</span>
@@ -257,7 +258,7 @@ def tiles(founder, idxs=None, base=""):
 
 def rec_head(founder, base, label):
     F = FOUNDERS[founder]
-    return f'<div class="rec-h"><img src="{base}img/{F["img"]}" alt=""><div><b>{label}</b><br><span>{F["name"]}, Founding Partner</span></div></div>'
+    return f'<div class="rec-h"><img src="/img/{F["img"]}" alt=""><div><b>{label}</b><br><span>{F["name"]}, Founding Partner</span></div></div>'
 
 
 LEADERSHIP = "<b>Senior leadership across every theme:</b> from a fractional CFO, COO or controller to a full finance team, built around you."
@@ -267,7 +268,7 @@ PROVIDERS = "<b>We work alongside your existing providers:</b> your administrato
 
 
 def spectrum(base):
-    lv = " + ".join(f'<a class="lv" href="{base}{LEVELS[k]["slug"]}/">{LEVELS[k]["name"]}</a>' for k in ORDER)
+    lv = " + ".join(f'<a class="lv" href="{STAGE}{LEVELS[k]["slug"]}/">{LEVELS[k]["name"]}</a>' for k in ORDER)
     return f"""<div class="levels">At any level, or any combination: {lv}</div>
     <div class="steps5">
       <div class="st s1"><h3>Advisory</h3><p>Targeted consulting on a specific issue or review</p></div>
@@ -284,8 +285,8 @@ def offer(base):
     return f"""<section class="offer" id="checklist">
   <div class="wrap">
     <div class="cover-mock">
-      <img class="back" src="{base}img/checklist-page2.png" alt="">
-      <img src="{base}img/checklist-cover.png" alt="Cover of The First 100 Days finance checklist">
+      <img class="back" src="/img/checklist-page2.png" alt="">
+      <img src="/img/checklist-cover.png" alt="Cover of The First 100 Days finance checklist">
     </div>
     <div>
       <div class="eyebrow" style="color:var(--teal-mid)">Free checklist</div>
@@ -301,7 +302,7 @@ def offer(base):
         <button class="btn primary" type="submit">Send me the checklist</button>
       </form>
       <p class="fine">Four pages, PDF. We'll send it to your inbox and the occasional note on PE finance. Unsubscribe anytime.</p>
-      <div class="gate-ok" id="gate-ok">Thanks! <a href="{base}downloads/Three-Strand-100-Day-Finance-Checklist.pdf" target="_blank" rel="noopener">Download the checklist (PDF)</a><br><span style="font-size:13px;color:#C9D0DB">Draft site: the email isn't captured yet. This step needs the same form service as the contact form.</span></div>
+      <div class="gate-ok" id="gate-ok">Thanks! <a href="/downloads/Three-Strand-100-Day-Finance-Checklist.pdf" target="_blank" rel="noopener">Download the checklist (PDF)</a><br><span style="font-size:13px;color:#C9D0DB">Draft site: the email isn't captured yet. This step needs the same form service as the contact form.</span></div>
     </div>
   </div>
 </section>
@@ -498,12 +499,12 @@ def home():
     </div>
     <div class="grid g2">
       <div class="person">
-        <div class="top"><img src="img/pritpal.jpg" alt="Pritpal Aujla"><div><h3>Pritpal Aujla</h3><div class="role">Founding Partner<small>Leads PE Fund and Firm</small></div></div></div>
+        <div class="top"><img src="/img/pritpal.jpg" alt="Pritpal Aujla"><div><h3>Pritpal Aujla</h3><div class="role">Founding Partner<small>Leads PE Fund and Firm</small></div></div></div>
         <p>A 30-year career in finance, including 20 years as CFO / COO across multiple PE Firms that today manage $75B+, investing globally across sectors and the capital structure. Pritpal started his career as an auditor at PwC.</p>
         <div class="creds">EIG &middot; Roark Capital &middot; The Vistria Group &middot; US CPA and UK Chartered Certified Accountant &middot; Applied Sciences, University of Wolverhampton (UK)</div>
       </div>
       <div class="person">
-        <div class="top"><img src="img/bart.jpg" alt="Bart Bruckert"><div><h3>Bart Bruckert</h3><div class="role">Founding Partner<small>Leads Portfolio Company</small></div></div></div>
+        <div class="top"><img src="/img/bart.jpg" alt="Bart Bruckert"><div><h3>Bart Bruckert</h3><div class="role">Founding Partner<small>Leads Portfolio Company</small></div></div></div>
         <p>A 20+ year career, including 10+ years as a PE-backed CFO or VP Finance / Ops and 8+ years in client service at Bain &amp; Co. and Accenture. Bart brings a deep technology background across ERP, CRM, BI and AI implementation.</p>
         <div class="creds">Portfolio companies of Oaktree, Apollo and Standard General &middot; MBA, Finance, University of Chicago &middot; BS, Computer Science, University of Notre Dame</div>
       </div>
@@ -543,8 +544,8 @@ def home():
       <div class="rule"></div>
       <h2>Let's talk</h2>
       <p class="sub">The next step is a working session on your most pressing priority, with a founding partner.</p>
-      <div class="cperson"><img src="img/pritpal.jpg" alt=""><div><b>Pritpal Aujla</b><span>Leads PE Fund and Firm</span></div></div>
-      <div class="cperson"><img src="img/bart.jpg" alt=""><div><b>Bart Bruckert</b><span>Leads Portfolio Company</span></div></div>
+      <div class="cperson"><img src="/img/pritpal.jpg" alt=""><div><b>Pritpal Aujla</b><span>Leads PE Fund and Firm</span></div></div>
+      <div class="cperson"><img src="/img/bart.jpg" alt=""><div><b>Bart Bruckert</b><span>Leads Portfolio Company</span></div></div>
       <div class="qs"><h4>Questions we'll ask you</h4><ul>
         <li>Which of these problems feels most urgent?</li>
         <li>What's working today, and where would you like more support?</li>
@@ -583,7 +584,7 @@ def level_page(key):
     stats = "".join(f"<div class=\"stat\"><b>{v}</b><p>{t}</p></div>" for v, t in L["stats"])
     label = "Inside the PE Fund and Firm" if L["founder"] == "pritpal" else "Inside the Portfolio Company"
     others = "".join(
-        f'<a class="other" href="{b}{LEVELS[k]["slug"]}/"><div class="lvl">{LEVELS[k]["name"]}</div><h3>&ldquo;{LEVELS[k]["question"]}&rdquo;</h3><p>Led by {FOUNDERS[LEVELS[k]["founder"]]["name"]} <span class="more">See how we help</span></p></a>'
+        f'<a class="other" href="{STAGE}{LEVELS[k]["slug"]}/"><div class="lvl">{LEVELS[k]["name"]}</div><h3>&ldquo;{LEVELS[k]["question"]}&rdquo;</h3><p>Led by {FOUNDERS[LEVELS[k]["founder"]]["name"]} <span class="more">See how we help</span></p></a>'
         for k in ORDER if k != key)
     motto = f'<div class="motto">{L["motto"]}</div>' if L.get("motto") else ""
     connect = ("Own Portfolio Companies too? When we work on both sides, KPIs are built in your format from day one, and the same figures run from the Portfolio Company ledger to the LP letter with no re-keying."
@@ -603,7 +604,7 @@ def level_page(key):
       <a class="btn primary" href="{b}?level={key}#contact">{CTA}</a>
       <a class="btn ghost" href="#themes">See what we do</a>
     </div>
-    <div class="leader"><img src="{b}img/{F['img']}" alt="{F['name']}"><div><b>Led by {F['name']}</b>Founding Partner &middot; {F['short']}</div></div>
+    <div class="leader"><img src="/img/{F['img']}" alt="{F['name']}"><div><b>Led by {F['name']}</b>Founding Partner &middot; {F['short']}</div></div>
   </div>
 </div>
 
@@ -681,9 +682,51 @@ def level_page(key):
 """ + footer(b) + SCRIPT
 
 
+# ---------------------------------------------------------------- public landing page (site root)
+def landing():
+    levels = "".join(
+        f'<div class="lp-lv"><b>{LEVELS[k]["name"]}</b><span>&ldquo;{LEVELS[k]["question"]}&rdquo;</span></div>'
+        for k in ORDER)
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{BRAND} | {TAGLINE}</title>
+<meta name="description" content="Senior finance leadership, when you need it, for the PE Fund, the PE Firm and the Portfolio Company. Founded by former PE Firm and Portfolio Company CFOs.">
+<link rel="icon" type="image/svg+xml" href="/img/logo.svg">
+<link rel="alternate icon" type="image/png" href="/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="lp">
+<main class="lp-main">
+  <div class="lp-wrap">
+    <div class="lp-brand"><img src="/img/logo.svg" alt="">{BRAND}</div>
+    <div class="rule"></div>
+    <h1>Finance Expertise From <em>Both Sides of the Deal</em></h1>
+    <p class="lp-lead">Senior finance leadership, when you need it, for the PE Fund, the PE Firm and the Portfolio Company.</p>
+    <p class="lp-founded">Founded by former PE Firm and Portfolio Company CFOs.</p>
+    <div class="lp-levels">{levels}</div>
+    <p class="lp-soon">Our full website is coming soon.</p>
+  </div>
+</main>
+<footer class="lp-foot"><div class="lp-wrap">&copy; 2026 {BRAND}</div></footer>
+</body>
+</html>
+"""
+
+
 if __name__ == "__main__":
-    (ROOT / "index.html").write_text(home())
+    import shutil
+    stage = ROOT / "stage"; stage.mkdir(exist_ok=True)
+    (ROOT / "index.html").write_text(landing())
+    (stage / "index.html").write_text(home())
     for k in ORDER:
-        d = ROOT / LEVELS[k]["slug"]; d.mkdir(exist_ok=True)
+        d = stage / LEVELS[k]["slug"]; d.mkdir(exist_ok=True)
         (d / "index.html").write_text(level_page(k))
-    print("built: index.html,", ", ".join(LEVELS[k]["slug"] + "/index.html" for k in ORDER))
+        old = ROOT / LEVELS[k]["slug"]          # pages used to live at the root
+        if old.exists(): shutil.rmtree(old)
+    print("built: index.html (landing), stage/index.html,", ", ".join("stage/" + LEVELS[k]["slug"] + "/" for k in ORDER))

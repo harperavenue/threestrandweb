@@ -308,3 +308,24 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 footer a{color:#C9D0DB;text-decoration:none}
 footer a:hover{color:#fff}
 footer .links{display:flex;gap:20px;flex-wrap:wrap}
+
+/* public landing page (site root) */
+body.lp{background:var(--navy);color:#fff;min-height:100vh;display:flex;flex-direction:column}
+.lp-main{flex:1;display:flex;align-items:center;position:relative;overflow:hidden}
+.lp-main:before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--teal)}
+.lp-main:after{content:"";position:absolute;right:-200px;top:-160px;width:640px;height:640px;border-radius:50%;border:80px solid rgba(14,124,134,.18)}
+.lp-wrap{max-width:var(--max);margin:0 auto;padding:0 40px;width:100%;position:relative;z-index:1}
+.lp-main .lp-wrap{padding-top:72px;padding-bottom:72px}
+.lp-brand{display:flex;align-items:center;gap:14px;font-weight:900;font-size:24px;margin-bottom:64px}
+.lp-brand img{width:48px;height:48px}
+body.lp h1{font-size:clamp(38px,5.6vw,64px);line-height:1.06;font-weight:900;max-width:900px}
+body.lp h1 em{font-style:normal;color:var(--teal-mid)}
+.lp-lead{font-size:clamp(18px,2.1vw,22px);color:#DCE3EC;margin-top:24px;max-width:720px}
+.lp-founded{font-style:italic;color:var(--teal-mid);margin-top:12px;font-size:18px}
+.lp-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px;max-width:980px}
+.lp-lv{border-top:3px solid var(--teal);padding-top:14px}
+.lp-lv b{display:block;font-size:18px}
+.lp-lv span{display:block;color:#B9C3D3;font-size:15.5px;margin-top:4px;font-style:italic}
+.lp-soon{margin-top:56px;color:#B9C3D3;font-size:15px;letter-spacing:.04em}
+.lp-foot{background:#161E31;color:#9AA5B8;font-size:13.5px;padding:22px 0}
+@media(max-width:760px){.lp-levels{grid-template-columns:1fr;gap:18px}.lp-brand{margin-bottom:44px}.lp-wrap{padding:0 26px}}
